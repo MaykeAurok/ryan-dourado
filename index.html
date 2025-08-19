@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fiz com todo amor 💕 | Te amo viu Juli 💖💓💕💘</title>
+    
+    <!-- --- MODIFICAÇÃO AQUI: Adição do Favicon (Emoji) --- -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
+    <!-- --------------------------------------------------- -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            background:linear-gradient(135deg, #EECDA3, #EF629F);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; /* Garante que o body não tenha barra de rolagem */
+            min-height: 100vh;
+            display: flex; /* Usar flexbox para o body */
+            flex-direction: column; /* Conteúdo em coluna */
+            align-items: center; /* Centraliza horizontalmente */
+            justify-content: flex-start; /* Alinha o conteúdo ao topo, permitindo que o scrollable-content ocupe o espaço */
+            position: relative; /* Necessário para o z-index dos elementos fixos */
+        }
+        
+        /* NOVO ESTILO: Para o container de rolagem */
+        .scrollable-content {
+            max-height: 100vh; /* Ocupa a altura total da viewport */
+            overflow-y: auto; /* Permite rolagem vertical dentro deste container */
+            -webkit-overflow-scrolling: touch; /* Melhor rolagem em iOS */
+            width: 100%; /* Ocupa a largura total para centralizar o conteúdo */
+            padding-top: 20px; /* Adiciona um pouco de padding no topo para não colar */
+            padding-bottom: 20px; /* Adiciona um pouco de padding na parte inferior */
+            box-sizing: border-box; /* Inclui padding no tamanho total */
+            z-index: 2; /* Garante que o conteúdo principal esteja acima do fundo, mas abaixo dos elementos fixos */
+            position: relative; /* Necessário para o z-index funcionar */
+            /* Adicionado para centralizar o conteúdo interno do scrollable-content */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .title-font {
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        .heart, .flower {
+            position: fixed; 
+            pointer-events: none;
+            z-index: 9999; /* Valor ainda mais alto para garantir prioridade */
+            opacity: 1; 
+            border: 10px solid transparent; 
+            padding: 5px; 
+            box-sizing: border-box; 
+            border-radius: 15px; 
+            border-image: linear-gradient(to right, #ffc0cb, #ff69b4, #e0b0ff); 
+            border-image-slice: 1; 
+        }
+
+        .heart {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        .countdown-box {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            position: relative; 
+            z-index: 1; /* Conteúdo principal abaixo dos elementos fixos */
+        }
+        
+        .flower {
+            animation: sway 8s ease-in-out infinite;
+        }
+        
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Adicionar z-index ao container do Spotify para garantir que ele esteja acima */
+        .spotify-embed-container {
+            z-index: 3; /* Um z-index maior que o do scrollable-content e countdown-box */
+            position: relative; /* Necessário para o z-index funcionar */
+        }
+
+        /* Media queries para ajustar o tamanho das imagens de fundo em telas menores */
+        @media (max-width: 768px) {
+            .heart img, .flower img {
+                width: 50px; 
+                height: 50px;
+            }
+
+            /* Ajustes para manter as imagens mais nas bordas em telas menores */
+            .heart:nth-of-type(1) { 
+                top: 5%;
+                left: 2%;
+            }
+            .heart:nth-of-type(2) { 
+                top: 85%;
+                right: 2%;
+            }
+            .flower:nth-of-type(3) { 
+                top: 15%;
+                right: 5%;
+            }
+            .flower:nth-of-type(4) { 
+                bottom: 10%;
+                left: 5%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .heart img, .flower img {
+                width: 40px; 
+                height: 40px;
+            }
+            /* Ajustes mais agressivos para telas muito pequenas */
+            .heart:nth-of-type(1) { 
+                top: 3%;
+                left: 1%;
+            }
+            .heart:nth-of-type(2) { 
+                top: 90%;
+                right: 1%;
+            }
+            .flower:nth-of-type(3) { 
+                top: 10%;
+                right: 3%;
+            }
+            .flower:nth-of-type(4) { 
+                bottom: 5%;
+                left: 3%;
+            }
+        }
+
+        /* NOVO ESTILO: Corações ao clicar */
+        .click-heart {
+            position: absolute;
+            pointer-events: none;
+            font-size: 2em; /* Tamanho do emoji */
+            animation: riseAndFade 1.5s ease-out forwards;
+            z-index: 10000; /* Garante que fique acima de tudo */
+            transform: translate(-50%, -50%); /* Centraliza o coração no clique */
+        }
+
+        @keyframes riseAndFade {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%) translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -50%) translateY(-50px); /* Sobe 50px */
+            }
+        }
+
+        /* Estilo para a seção de textos de memórias */
+        .memory-section {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 30px; /* Espaçamento do elemento acima */
+            margin-bottom: 30px; /* Espaçamento do elemento abaixo */
+            text-align: left; /* Alinha o texto à esquerda dentro da caixa */
+        }
+
+        .memory-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .memory-item:last-child {
+            border-bottom: none; /* Remove a borda do último item */
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .memory-date {
+            font-weight: bold;
+            color: #E91E63; /* Cor rosa mais escura */
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .memory-text {
+            color: #333;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-flex-start relative overflow-hidden">
+    <!-- Background elements -->
+    <div class="heart" style="top: 14%; left: 5%;">
+        <!-- CORREÇÃO AQUI: Usando o link de miniatura diretamente no src -->
+        <img src="https://drive.google.com/thumbnail?id=1dNK7rcXRkXtKEh2YZuKcyn4GtetG5z7H&sz=w1500" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dNK7rcXRkXtKEh2YZuKcyn4GtetG5z7H&sz=w1500';" referrerpolicy="no-referrer" alt="Coração rosa brilhante com contorno em degrade" width="80" height="80">
+    </div>
+    <div class="heart" style="top: 80%; right: 8%;">
+        <!-- Este já estava correto com o link de download direto -->
+        <img src="https://drive.usercontent.google.com/uc?id=1dRZKsxnFhBJ6YbIKYc5AZaZKE-YWyM6m&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dRZKsxnFhBJ6YbIKYc5AZaZKE-YWyM6m&sz=w1500';" referrerpolicy="no-referrer" alt="Coração rosa claro com efeito de brilho suave" width="80" height="80">
+    </div>
+    <div class="flower" style="top: 13%; right: 6%;">
+        <!-- Este já estava correto com o link de download direto -->
+        <img src="https://drive.usercontent.google.com/uc?id=1dXlIvp6VHCmIRu3kH-Acw4sUcSfdV4iT&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dXlIvp6VHCmIRu3kH-Acw4sUcSfdV4iT&sz=w1500';" referrerpolicy="no-referrer" alt="Flor branca com detalhes rosados e centro amarelo" width="80" height="80">
+    </div>
+    <div class="flower" style="bottom: 15%; left: 12%;">
+        <!-- Este já estava correto com o link de download direto -->
+        <img src="https://drive.usercontent.google.com/uc?id=1dKVTl5sSydlVpkwYqd8M41Z1OAfDs6q8&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dKVTl5sSydlVpkwYqd8M41Z1OAfDs6q8&sz=w1500';" referrerpolicy="no-referrer" alt="Flor rosa com pétalas em degrade para branco" width="80" height="80">
+    </div>
+
+    <!-- NOVO CONTAINER DE ROLAGEM -->
+    <div class="scrollable-content">
+        <!-- Main content (AGORA TUDO DENTRO DESTE CONTAINER) -->
+        <div class="text-center px-4 z-10">
+            <!-- Título alterado para cor preta -->
+            <h1 class="title-font text-5xl md:text-8xl font-bold text-black mb-6 tracking-wide">
+                Mayke & Juliana
+            </h1>
+            
+            <div class="countdown-box p-6 md:p-8 max-w-md mx-auto mb-10">
+                <h2 class="text-xl md:text-2xl font-medium text-pink-600 mb-4">✨ Não contamos dias… contamos sorrisos, abraços e lembranças.</h2>
+                <div id="love-counter" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-pink-50 rounded-lg p-3">
+                        <div id="days" class="text-3xl font-bold text-pink-700">0</div>
+                        <div class="text-sm text-pink-500">dias</div>
+                    </div>
+                    <div class="bg-pink-50 rounded-lg p-3">
+                        <div id="hours" class="text-3xl font-bold text-pink-700">0</div>
+                        <div class="text-sm text-pink-500">horas</div>
+                    </div>
+                    <div class="bg-pink-50 rounded-lg p-3">
+                        <div id="minutes" class="text-3xl font-bold text-pink-700">0</div>
+                        <div class="text-sm text-pink-500">minutos</div>
+                    </div>
+                    <div class="bg-pink-50 rounded-lg p-3">
+                        <div id="seconds" class="text-3xl font-bold text-pink-700">0</div>
+                        <div class="text-sm text-pink-500">segundos</div>
+                    </div>
+                </div>
+                <p class="text-pink-500 mt-4">Desde 21/12/2024</p>
+            </div>
+
+            <!-- Adicionado z-index ao container do Spotify -->
+            <div class="spotify-embed-container mt-8 mb-10 max-w-md mx-auto z-30 relative">
+                <!-- Título adicionado acima da prévia do Spotify -->
+                <h2 class="text-xl md:text-2xl font-medium text-pink-600 mb-4">🎶 Nossa Música Especial 🎶</h2>
+                <!-- Player bonitinho do Spotify (capa) -->
+                <iframe src="https://open.spotify.com/embed/track/1bguAEOqZ6UU6Cnljrgn0t"
+                        width="100%" height="152" frameBorder="0"
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+                </iframe>
+
+                <!-- Áudio escondido (preview 30s Spotify) -->
+                <audio id="mySong" src="https://p.scdn.co/mp3-preview/8e5a1b17e7b9c3ddc9f6c4975d62694c1af90b77?cid=774b29d4f13844c495f206cafdad9c86"></audio>
+            </div>
+        </div>
+
+        <div class="mt-8">
+            <img src="https://drive.usercontent.google.com/uc?id=1dECi9AcmqNyVM48e-JH-Uw1iktP4uKnN&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dECi9AcmqNyVM48e-JH-Uw1iktP4uKnN&sz=w2000';" alt="Imagem personalizada" referrerpolicy="no-referrer" class="rounded-lg shadow-xl mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
+        </div>
+
+        <!-- NOVA SEÇÃO: Textos de Memórias -->
+        <div class="memory-section mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
+            <h2 class="text-2xl md:text-3xl font-bold text-pink-700 mb-6 text-center">💖 Nossas Memórias Juntos 💖</h2>
+            
+            <div class="memory-item">
+                <p class="memory-date">23/03/2025</p>
+                <p class="memory-text">Eu e meu amor (Juliana) saímos pra praça, conversamos bastante e foi bom. Dei presente pra ela: um colar, flores e chocolate (kit cura). A razão do presente foi porque batemos 3 meses juntos no dia 21/03/2025.</p>
+            </div>
+
+            <div class="memory-item">
+                <p class="memory-date">30/03/2025</p>
+                <p class="memory-text">Fui na casa do meu bem (Juliana), assistimos filme (Um lugar silencioso: dia um), passamos o dia juntos até a noite, foi bom demais.</p>
+            </div>
+
+            <div class="memory-item">
+                <p class="memory-date">06/04/2025</p>
+                <p class="memory-text">Fui na casa do meu coração em pessoa (Juliana), passei o dia lá, tomei suco de cajá, vi ela comer beiju. Logo em seguida assistimos filme no laptop dela, o filme Donzela, foi realmente bom o filme e mais tarde um pouco jogamos dominó. Eu queria ficar só vendo eles jogar porque gosto de olhar essas partes, mas acabei que joguei, e depois fui embora, foi muito bom.</p>
+            </div>
+
+            <div class="memory-item">
+                <p class="memory-date">21/04/2025 (segunda-feira)</p>
+                <p class="memory-text">Fui na casa do meu amor (Juliana). Um dia antes foi Páscoa, e no dia que fui batemos 4 meses juntos. Nada mais nada menos que dei um ovo da Páscoa pra ela (Sonho de Valsa), assistimos filme juntos (Kill Boksoon), o filme era bom, tomei café e comi dois bolos, e no final a despedida como sempre, foi boa.</p>
+            </div>
+
+            <div class="memory-item">
+                <p class="memory-date">04/05/2025</p>
+                <p class="memory-text">Fui pra praça com minha princesa (Juliana), conversamos bastante, encontramos Moisés e um amigo antigo de escola, Gustavo. Comemos açaí, estava bom, vimos a carreta furacão, e voltamos pra casa dela pra eu voltar pra casa, foi bom. nesse dia te toquei e percebi que você estava mais sensível, ficou desconfortável com vontade de coçar, e também nem deveria ter feito isso, intrusivos.</p>
+            </div>
+
+            <div class="memory-item">
+                <p class="memory-date">29/05/2025 (quinta-feira)</p>
+                <p class="memory-text">Levei ela pra conhecer meus pais e meus pais conhecer ela. Ficamos lá um tempo, minha mãe conversou um pouco e meu pai falou também com ela, meu tio também estava lá. Depois assistimos filme, depois disso fomos de pé até a casa dela, e esperei meu pai até vir me buscar,foi um dia bem importante pra mim, e deu tudo certo e foi bom.</p>
+            </div>
+
+            <div class="memory-item">
+                <p class="memory-date">21/06/2025 (Dia dos Namorados)</p>
+                <p class="memory-text">Saí com meu amor em pessoa na praça, conversamos um bom tempo, comemos açaí em sorvete, ela estava com muita vontade e eu com muita fome. Por algum motivo esse sorvete estava mais saboroso. Dei presente pra ela bem simples (gloss e caixa de sabonete de coração) e um especial (cordão que guardava desde 2022 pra minha primeira namorada para dar nos dias dos namorados) e uma flor também. Ela me deu um presente também, gostei, um cordão. No fim não disse que iria de Uber, acabei que saí mais tarde que deveria, mas foi bom.</p>
+            </div>
+
+            <div class="memory-item">
+                <p class="memory-date">29/06/2025</p>
+                <p class="memory-text">Fui na casa da minha proprietária(juliana), cheguei lá o pai dela estava assistindo jogo do Flamengo, e logo ela foi tirar um pouco da sobrancelha, e logo depois assistimos um filme juntos no notebook, nome do filme era Infinito. Antes disso ela comeu torrada com suco, foi com suco porque tinha acabado leite para tomar com café, e mais tarde ela comeu beiju. Já de buchinho cheio tinha que ir embora, então ficamos no portão conversando, e ficamos abraçados e nisso chegou pessoal do culto do lado, e a menina foi pro quarto e nisso ela ficou observando a gente lá, e depois disso fui embora.</p>
+            </div>
+
+            <!-- NOVOS TEXTOS ADICIONADOS AQUI -->
+            <div class="memory-item">
+                <p class="memory-date">13/07/2025</p>
+                <p class="memory-text">Fui na casa da minha amada(juliana), nós comemos juntos, tomamos café, comemos pão de queijo e um bolinho doce, vi ela comer. Assistimos filme juntos, nome do filme era "The Old Guard 2", era sobre imortais. Logo quando acabou a gente foi lá pra fora, ficamos conversando, nisso não vimos a hora passar rápido, e saímos era mais ou menos 22:30 e quando fui olhar a hora era mais ou menos 23:30. ela se permitiu a um toque pele a pele, eu queria tambem sentir isso, foi muito bom demais esse dia e momentos.</p>
+            </div>
+
+            <div class="memory-item">
+                <p class="memory-date">20/07/2025</p>
+                <p class="memory-text">Fui na casa da minha amada, fui mais cedo um pouco. Cheguei lá e ela tomou um pouco de água, porque o dia estava quente e me ofereceu também, e em seguida fomos para o sofá. Ela e eu estávamos com sono, só que ela estava mais, e ficamos no sofá por um tempo bom. Dei vários cheiros nela, bastante porque estava com saudades, e depois de um tempo nos levantamos e fomos para a cozinha. Ela estava com fome também, e ela foi olhar a geladeira e viu abacate para fazer, e ela fez abacate para nós, eu, para ela, Mariana e a minha sogra. Começou a ficar de noite, e a mãe, pai e irmã dela foram na casa do vô dela, e nisso ficamos nós dois. Nós conversamos um pouco, nós estávamos na cozinha, e nisso comecei a cheirar, beijar, beijos que demoraram muito mais que o comum. Depois eles chegaram, nós paramos. Tempo depois vimos o horário, e vimos que já era hora de eu ter que ir. Fomos lá para fora, dei tchau para Mariana, e depois voltei para dar tchau para a mãe dela, e ela falou "já vai? Já mandou mensagem para ele?". A Juliana (minha amada) falou que nós íamos ficar um pouco lá fora ainda, nisso conversamos bastante lá fora, falamos sobre aquilo,aquilo la, e do que ela se sentia bem sobre isso.E nisso tempinho depois, abracei ela, depois perguntei se poderia pegar em suas nádegas, ela deixou, e muito depois disso, depois de ter acontecido outras coisas boas que nao seria legal citar aqui, meu pai chegou, tive que ir embora.</p>
+            </div>
+            <!-- FIM DOS NOVOS TEXTOS -->
+
+        </div>
+        <!-- FIM DA NOVA SEÇÃO: Textos de Memórias -->
+
+    </div>
+    <!-- FIM DO NOVO CONTAINER DE ROLAGEM -->
+
+    <script>
+        function updateLoveCounter() {
+            const startDate = new Date('December 21, 2024 00:00:00');
+            const now = new Date();
+            
+            if (now < startDate) {
+                document.getElementById('love-counter').innerHTML = `
+                    <div class="col-span-4 text-center py-4">
+                        <p class="text-pink-600">Nosso amor começará em breve!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            const diff = now - startDate;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+        
+        // Update counter immediately and then every second
+        updateLoveCounter();
+        setInterval(updateLoveCounter, 1000);
+
+        // Create floating hearts (existing background hearts)
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.top = '110vh';
+            heart.style.opacity = 1; 
+            heart.style.transform = `scale(${Math.random() * 0.4 + 0.3})`; 
+            
+            const img = document.createElement('img');
+            // Usando um link de miniatura mais genérico para corações flutuantes
+            img.src = `https://drive.google.com/thumbnail?id=1dRZKsxnFhBJ6YbIKYc5AZaZKE-YWyM6m&sz=w1500`; 
+            img.alt = "Pequeno coração rosa flutuando suavemente";
+            img.width = Math.floor(Math.random() * 15 + 25); 
+            
+            heart.appendChild(img);
+            document.body.appendChild(heart);
+            
+            const animationDuration = Math.random() * 10 + 8; 
+            
+            heart.style.animation = `float ${animationDuration}s linear forwards`;
+            
+            setTimeout(() => {
+                heart.remove();
+            }, animationDuration * 1000);
+        }
+        
+        // Corações ao clicar (NOVA FUNÇÃO)
+        document.addEventListener('click', function(e) {
+            const heart = document.createElement('div');
+            heart.className = 'click-heart';
+            heart.style.left = e.pageX + 'px';
+            heart.style.top = e.pageY + 'px';
+            heart.textContent = 'Te amo Juliana'; // Emoji de coração
+            document.body.appendChild(heart);
+            
+            // Remove o coração após a animação
+            setTimeout(() => heart.remove(), 1500); // Duração da animação é 1.5s
+        });
+    </script>
+</body>
+</html>
