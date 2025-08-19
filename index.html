@@ -47,6 +47,7 @@
         }
         
         .heart, .flower {
+            transition: opacity 0.4s ease;
             position: fixed; 
             pointer-events: none;
             z-index: 9999; /* Valor ainda mais alto para garantir prioridade */
@@ -271,7 +272,7 @@
         </div>
 
         <!-- NOVA SEÇÃO: Textos de Memórias -->
-        <div class="memory-section mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
+        <div id="memory-section" class="memory-section mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
             <h2 class="text-2xl md:text-3xl font-bold text-pink-700 mb-6 text-center">💖 Nossas Memórias Juntos 💖</h2>
             
             <div class="memory-item">
@@ -402,6 +403,42 @@
             // Remove o coração após a animação
             setTimeout(() => heart.remove(), 1500); // Duração da animação é 1.5s
         });
-    </script>
+    
+// --- Fade-out gradual das imagens flutuantes ao aproximar da seção de memórias ---
+(function() {
+  try {
+    var scrollable = document.querySelector('.scrollable-content');
+    var memorySection = document.getElementById('memory-section');
+    var floatEls = Array.prototype.slice.call(document.querySelectorAll('.heart, .flower'));
+    if (!scrollable || !memorySection || floatEls.length === 0) return;
+
+    function updateOpacity() {
+      var rect = memorySection.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+
+      // Inicia o fade quando o topo da seção entra no último 90% da tela e termina aos 30%
+      var start = vh * 0.9;
+      var end = vh * 0.3;
+
+      var opacity = 1;
+      if (rect.top < start) {
+        var t = (rect.top - end) / (start - end);
+        opacity = Math.max(0, Math.min(1, t));
+      }
+      floatEls.forEach(function(el) { el.style.opacity = opacity; });
+    }
+
+    // Atualiza tanto no scroll do container quanto em resize (mobile/desktop)
+    scrollable.addEventListener('scroll', updateOpacity, { passive: true });
+    window.addEventListener('resize', updateOpacity);
+    // Chamada inicial
+    updateOpacity();
+  } catch(e) {
+    console.warn('Fade-out flutuantes: ', e);
+  }
+})();
+// --- fim do fade-out ---
+
+</script>
 </body>
 </html>
