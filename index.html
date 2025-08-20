@@ -99,6 +99,11 @@
                 width: 50px; 
                 height: 50px;
             }
+            /* Reduzir padding e borda para telas menores */
+            .heart, .flower {
+                padding: 3px; /* Reduz o padding */
+                border-width: 5px; /* Reduz a largura da borda */
+            }
 
             /* Ajustes para manter as imagens mais nas bordas em telas menores */
             .heart:nth-of-type(1) { 
@@ -113,9 +118,10 @@
                 top: 15%;
                 right: 5%;
             }
+            /* CORREÇÃO AQUI: Ajuste para a flor inferior esquerda */
             .flower:nth-of-type(4) { 
-                bottom: 10%;
-                left: 5%;
+                bottom: 5%; /* Ajustado para ficar mais acima */
+                left: 2%; /* Ajustado para ficar mais para dentro */
             }
         }
 
@@ -123,6 +129,11 @@
             .heart img, .flower img {
                 width: 40px; 
                 height: 40px;
+            }
+            /* Reduzir ainda mais padding e borda para telas muito pequenas */
+            .heart, .flower {
+                padding: 2px; /* Reduz o padding */
+                border-width: 3px; /* Reduz a largura da borda */
             }
             /* Ajustes mais agressivos para telas muito pequenas */
             .heart:nth-of-type(1) { 
@@ -137,9 +148,10 @@
                 top: 10%;
                 right: 3%;
             }
+            /* CORREÇÃO AQUI: Ajuste para a flor inferior esquerda em telas muito pequenas */
             .flower:nth-of-type(4) { 
-                bottom: 5%;
-                left: 3%;
+                bottom: 2%; /* Ajustado para ficar mais acima */
+                left: 1%; /* Ajustado para ficar mais para dentro */
             }
         }
 
@@ -199,6 +211,72 @@
             color: #333;
             line-height: 1.6;
         }
+
+        /* Estilos para o Carrossel de Imagens */
+        .image-carousel {
+            position: relative;
+            width: 100%;
+            max-width: 400px; /* Ajuste conforme necessário */
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Mantém o estilo geral de imagens dentro do carrossel */
+        .image-carousel img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* === NOVO: estrutura de rolagem (track) sem zoom/esticar === */
+        .carousel-inner{
+            width: 100%;
+            overflow: hidden;
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+        }
+        .carousel-track{
+            display: flex;
+            transition: transform 0.6s ease;
+        }
+        .carousel-track img{
+            flex: 0 0 100%;
+            max-width: 100%;
+            height: auto;
+            object-fit: contain; /* evita corte/zoom */
+            display: block;
+        }
+        /* === FIM NOVO === */
+
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.7);
+            border: none;
+            width: 40px; /* Largura para o círculo */
+            height: 40px; /* Altura para o círculo */
+            display: flex; /* Para centralizar o conteúdo */
+            align-items: center; /* Para centralizar o conteúdo */
+            justify-content: center; /* Para centralizar o conteúdo */
+            cursor: pointer;
+            font-size: 1.5em;
+            color: #E91E63;
+            border-radius: 50%; /* Torna o botão redondo */
+            transition: background-color 0.3s ease;
+            z-index: 10; /* Garante que os botões fiquem acima da imagem */
+        }
+
+        .carousel-button:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+
+        .carousel-button.left { left: 10px; }
+        .carousel-button.right { right: 10px; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-flex-start relative overflow-hidden">
@@ -267,8 +345,13 @@
             </div>
         </div>
 
-        <div class="mt-8">
-            <img src="https://drive.usercontent.google.com/uc?id=1dECi9AcmqNyVM48e-JH-Uw1iktP4uKnN&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dECi9AcmqNyVM48e-JH-Uw1iktP4uKnN&sz=w2000';" alt="Imagem personalizada" referrerpolicy="no-referrer" class="rounded-lg shadow-xl mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
+        <!-- Carrossel de Imagens (AGORA COM ROLAGEM/SLIDE) -->
+        <div class="image-carousel mt-8 mb-10">
+            <button id="prevBtn" class="carousel-button left">&#10094;</button>
+            <div class="carousel-inner">
+                <div class="carousel-track"></div>
+            </div>
+            <button id="nextBtn" class="carousel-button right">&#10095;</button>
         </div>
 
         <!-- NOVA SEÇÃO: Textos de Memórias -->
@@ -306,7 +389,7 @@
             </div>
 
             <div class="memory-item">
-                <p class="memory-date">21/06/2025 (Dia dos Namorados)</p>
+                <p class="memory-date">12/06/2025 (Dia dos Namorados)</p>
                 <p class="memory-text">Saí com meu amor em pessoa na praça, conversamos um bom tempo, comemos açaí em sorvete, ela estava com muita vontade e eu com muita fome. Por algum motivo esse sorvete estava mais saboroso. Dei presente pra ela bem simples (gloss e caixa de sabonete de coração) e um especial (cordão que guardava desde 2022 pra minha primeira namorada para dar nos dias dos namorados) e uma flor também. Ela me deu um presente também, gostei, um cordão. No fim não disse que iria de Uber, acabei que saí mais tarde que deveria, mas foi bom.</p>
             </div>
 
@@ -393,52 +476,102 @@
         
         // Corações ao clicar (NOVA FUNÇÃO)
         document.addEventListener('click', function(e) {
-            const heart = document.createElement('div');
-            heart.className = 'click-heart';
-            heart.style.left = e.pageX + 'px';
-            heart.style.top = e.pageY + 'px';
-            heart.textContent = 'Te amo Juliana'; // Emoji de coração
-            document.body.appendChild(heart);
-            
-            // Remove o coração após a animação
-            setTimeout(() => heart.remove(), 1500); // Duração da animação é 1.5s
+            // Verifica se o clique não foi em um botão do carrossel
+            if (!e.target.closest('.carousel-button')) {
+                const heart = document.createElement('div');
+                heart.className = 'click-heart';
+                heart.style.left = e.pageX + 'px';
+                heart.style.top = e.pageY + 'px';
+                heart.textContent = 'Te amo Juliana'; // Emoji de coração
+                document.body.appendChild(heart);
+                
+                // Remove o coração após a animação
+                setTimeout(() => heart.remove(), 1500); // Duração da animação é 1.5s
+            }
         });
     
-// --- Fade-out gradual das imagens flutuantes ao aproximar da seção de memórias ---
-(function() {
-  try {
-    var scrollable = document.querySelector('.scrollable-content');
-    var memorySection = document.getElementById('memory-section');
-    var floatEls = Array.prototype.slice.call(document.querySelectorAll('.heart, .flower'));
-    if (!scrollable || !memorySection || floatEls.length === 0) return;
+        // --- Fade-out gradual das imagens flutuantes ao aproximar da seção de memórias ---
+        (function() {
+            try {
+                var scrollable = document.querySelector('.scrollable-content');
+                var memorySection = document.getElementById('memory-section');
+                var floatEls = Array.prototype.slice.call(document.querySelectorAll('.heart, .flower'));
+                if (!scrollable || !memorySection || floatEls.length === 0) return;
 
-    function updateOpacity() {
-      var rect = memorySection.getBoundingClientRect();
-      var vh = window.innerHeight || document.documentElement.clientHeight;
+                function updateOpacity() {
+                    var rect = memorySection.getBoundingClientRect();
+                    var vh = window.innerHeight || document.documentElement.clientHeight;
 
-      // Inicia o fade quando o topo da seção entra no último 90% da tela e termina aos 30%
-      var start = vh * 0.9;
-      var end = vh * 0.3;
+                    // Inicia o fade quando o topo da seção entra no último 90% da tela e termina aos 30%
+                    var start = vh * 0.9;
+                    var end = vh * 0.3;
 
-      var opacity = 1;
-      if (rect.top < start) {
-        var t = (rect.top - end) / (start - end);
-        opacity = Math.max(0, Math.min(1, t));
-      }
-      floatEls.forEach(function(el) { el.style.opacity = opacity; });
-    }
+                    var opacity = 1;
+                    if (rect.top < start) {
+                        var t = (rect.top - end) / (start - end);
+                        opacity = Math.max(0, Math.min(1, t));
+                    }
+                    floatEls.forEach(function(el) { el.style.opacity = opacity; });
+                }
 
-    // Atualiza tanto no scroll do container quanto em resize (mobile/desktop)
-    scrollable.addEventListener('scroll', updateOpacity, { passive: true });
-    window.addEventListener('resize', updateOpacity);
-    // Chamada inicial
-    updateOpacity();
-  } catch(e) {
-    console.warn('Fade-out flutuantes: ', e);
-  }
-})();
-// --- fim do fade-out ---
+                // Atualiza tanto no scroll do container quanto em resize (mobile/desktop)
+                scrollable.addEventListener('scroll', updateOpacity, { passive: true });
+                window.addEventListener('resize', updateOpacity);
+                // Chamada inicial
+                updateOpacity();
+            } catch(e) {
+                console.warn('Fade-out flutuantes: ', e);
+            }
+        })();
+        // --- fim do fade-out ---
 
-</script>
+        // Lógica do Carrossel de Imagens (versão com rolagem/track)
+        document.addEventListener('DOMContentLoaded', function() {
+            const track = document.querySelector('.carousel-track');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // **URLs das suas 7 imagens na sequência desejada**
+            const imageSources = [
+                "https://drive.google.com/thumbnail?id=1d8H4UHkNxqF8l2g1YJPzrUEFsx3lpt0N&sz=w1500", // Imagem "duas mãos"
+                "https://drive.google.com/thumbnail?id=1fRqRxKIHG4oBsfEoIHKn2zMtE6fDVlVP&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fek_1ks-tvXF9vo_QtHcuwXdNT-yid4J&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1ff_AgvOKYgRvU8AD6ayn_8jTl-4fDPLP&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fS20NRG7G9y23zkKu0MzKBM6JujBWAyN&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fWwvmBr-925mwfYFTJtJanlxgH3URb6-&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fghTsZC9nRkcNNCtaZMEQPiYZ1Ky2kuq&sz=w1500"
+            ];
+
+            let currentIndex = 0;
+
+            // monta as imagens no track
+            imageSources.forEach(src => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = "Imagem personalizada";
+                img.referrerPolicy = "no-referrer";
+                img.classList.add('rounded-lg','shadow-xl');
+                track.appendChild(img);
+            });
+
+            function updateCarousel() {
+                const offset = -currentIndex * 100;
+                track.style.transform = `translateX(${offset}%)`;
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + imageSources.length) % imageSources.length;
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % imageSources.length;
+                updateCarousel();
+            });
+
+            // inicializa
+            updateCarousel();
+        });
+    </script>
 </body>
 </html>
