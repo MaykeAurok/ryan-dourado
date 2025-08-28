@@ -14,77 +14,48 @@
       gtag('config', 'G-53BCXMG8DQ');
     </script>
 
-    <!-- --- MODIFICAÇÃO AQUI: Adição do Favicon (Emoji) --- -->
+    <!-- Favicon (emoji) -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
-    <!-- --------------------------------------------------- -->
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
-        /* Seus estilos originais aqui */
-    </style>
-</head>
-<body class="min-h-screen flex flex-col items-center justify-flex-start relative overflow-hidden">
-    <!-- TODO O SEU CONTEÚDO ORIGINAL AQUI (mantido, incluindo o carrossel e memórias) -->
 
-    <!-- Código do Clicky -->
-    <script async data-id="101491781" src="/1dffcc493ce.js"></script>
-
-    <!-- Seus scripts originais (contador, carrossel, corações etc) -->
-    <script>
-      // Mantive o código original de JS do contador, carrossel, corações etc.
-    </script>
-</body>
-</html>
-
-
-    
-    <!-- --- MODIFICAÇÃO AQUI: Adição do Favicon (Emoji) --- -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💖</text></svg>">
-    <!-- --------------------------------------------------- -->
-
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
         
         body {
             background:linear-gradient(135deg, #EECDA3, #EF629F);
             font-family: 'Poppins', sans-serif;
-            overflow: hidden; /* Garante que o body não tenha barra de rolagem */
+            overflow: hidden;
             min-height: 100vh;
-            display: flex; /* Usar flexbox para o body */
-            flex-direction: column; /* Conteúdo em coluna */
-            align-items: center; /* Centraliza horizontalmente */
-            justify-content: flex-start; /* Alinha o conteúdo ao topo, permitindo que o scrollable-content ocupe o espaço */
-            position: relative; /* Necessário para o z-index dos elementos fixos */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
         }
         
-        /* NOVO ESTILO: Para o container de rolagem */
         .scrollable-content {
-            max-height: 100vh; /* Ocupa a altura total da viewport */
-            overflow-y: auto; /* Permite rolagem vertical dentro deste container */
-            -webkit-overflow-scrolling: touch; /* Melhor rolagem em iOS */
-            width: 100%; /* Ocupa a largura total para centralizar o conteúdo */
-            padding-top: 20px; /* Adiciona um pouco de padding no topo para não colar */
-            padding-bottom: 20px; /* Adiciona um pouco de padding na parte inferior */
-            box-sizing: border-box; /* Inclui padding no tamanho total */
-            z-index: 2; /* Garante que o conteúdo principal esteja acima do fundo, mas abaixo dos elementos fixos */
-            position: relative; /* Necessário para o z-index funcionar */
-            /* Adicionado para centralizar o conteúdo interno do scrollable-content */
+            max-height: 100vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            box-sizing: border-box;
+            z-index: 2;
+            position: relative;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .title-font {
-            font-family: 'Dancing Script', cursive;
-        }
+        .title-font { font-family: 'Dancing Script', cursive; }
         
         .heart, .flower {
             transition: opacity 0.4s ease;
             position: fixed; 
             pointer-events: none;
-            z-index: 9999; /* Valor ainda mais alto para garantir prioridade */
+            z-index: 9999;
             opacity: 1; 
             border: 10px solid transparent; 
             padding: 5px; 
@@ -94,9 +65,7 @@
             border-image-slice: 1; 
         }
 
-        .heart {
-            animation: float 6s ease-in-out infinite;
-        }
+        .heart { animation: float 6s ease-in-out infinite; }
         
         @keyframes float {
             0%, 100% { transform: translateY(0) rotate(0deg); }
@@ -109,155 +78,79 @@
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             position: relative; 
-            z-index: 1; /* Conteúdo principal abaixo dos elementos fixos */
+            z-index: 1;
         }
         
-        .flower {
-            animation: sway 8s ease-in-out infinite;
-        }
+        .flower { animation: sway 8s ease-in-out infinite; }
         
         @keyframes sway {
             0%, 100% { transform: rotate(-5deg); }
             50% { transform: rotate(5deg); }
         }
 
-        /* Adicionar z-index ao container do Spotify para garantir que ele esteja acima */
         .spotify-embed-container {
-            z-index: 3; /* Um z-index maior que o do scrollable-content e countdown-box */
-            position: relative; /* Necessário para o z-index funcionar */
+            z-index: 3;
+            position: relative;
         }
 
-        /* Media queries para ajustar o tamanho das imagens de fundo em telas menores */
         @media (max-width: 768px) {
-            .heart img, .flower img {
-                width: 50px; 
-                height: 50px;
-            }
-            /* Reduzir padding e borda para telas menores */
-            .heart, .flower {
-                padding: 3px; /* Reduz o padding */
-                border-width: 5px; /* Reduz a largura da borda */
-            }
-
-            /* Ajustes para manter as imagens mais nas bordas em telas menores */
-            .heart:nth-of-type(1) { 
-                top: 5%;
-                left: 2%;
-            }
-            .heart:nth-of-type(2) { 
-                top: 85%;
-                right: 2%;
-            }
-            .flower:nth-of-type(3) { 
-                top: 15%;
-                right: 5%;
-            }
-            /* CORREÇÃO AQUI: Ajuste para a flor inferior esquerda */
-            .flower:nth-of-type(4) { 
-                bottom: 5%; /* Ajustado para ficar mais acima */
-                left: 2%; /* Ajustado para ficar mais para dentro */
-            }
+            .heart img, .flower img { width: 50px; height: 50px; }
+            .heart, .flower { padding: 3px; border-width: 5px; }
+            .heart:nth-of-type(1) { top: 5%; left: 2%; }
+            .heart:nth-of-type(2) { top: 85%; right: 2%; }
+            .flower:nth-of-type(3) { top: 15%; right: 5%; }
+            .flower:nth-of-type(4) { bottom: 5%; left: 2%; }
         }
 
         @media (max-width: 480px) {
-            .heart img, .flower img {
-                width: 40px; 
-                height: 40px;
-            }
-            /* Reduzir ainda mais padding e borda para telas muito pequenas */
-            .heart, .flower {
-                padding: 2px; /* Reduz o padding */
-                border-width: 3px; /* Reduz a largura da borda */
-            }
-            /* Ajustes mais agressivos para telas muito pequenas */
-            .heart:nth-of-type(1) { 
-                top: 3%;
-                left: 1%;
-            }
-            .heart:nth-of-type(2) { 
-                top: 90%;
-                right: 1%;
-            }
-            .flower:nth-of-type(3) { 
-                top: 10%;
-                right: 3%;
-            }
-            /* CORREÇÃO AQUI: Ajuste para a flor inferior esquerda em telas muito pequenas */
-            .flower:nth-of-type(4) { 
-                bottom: 2%; /* Ajustado para ficar mais acima */
-                left: 1%; /* Ajustado para ficar mais para dentro */
-            }
+            .heart img, .flower img { width: 40px; height: 40px; }
+            .heart, .flower { padding: 2px; border-width: 3px; }
+            .heart:nth-of-type(1) { top: 3%; left: 1%; }
+            .heart:nth-of-type(2) { top: 90%; right: 1%; }
+            .flower:nth-of-type(3) { top: 10%; right: 3%; }
+            .flower:nth-of-type(4) { bottom: 2%; left: 1%; }
         }
 
-        /* NOVO ESTILO: Corações ao clicar */
         .click-heart {
             position: absolute;
             pointer-events: none;
-            font-size: 2em; /* Tamanho do emoji */
+            font-size: 2em;
             animation: riseAndFade 1.5s ease-out forwards;
-            z-index: 10000; /* Garante que fique acima de tudo */
-            transform: translate(-50%, -50%); /* Centraliza o coração no clique */
+            z-index: 10000;
+            transform: translate(-50%, -50%);
         }
 
         @keyframes riseAndFade {
-            0% {
-                opacity: 1;
-                transform: translate(-50%, -50%) translateY(0);
-            }
-            100% {
-                opacity: 0;
-                transform: translate(-50%, -50%) translateY(-50px); /* Sobe 50px */
-            }
+            0% { opacity: 1; transform: translate(-50%, -50%) translateY(0); }
+            100% { opacity: 0; transform: translate(-50%, -50%) translateY(-50px); }
         }
 
-        /* Estilo para a seção de textos de memórias */
         .memory-section {
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(10px);
             border-radius: 16px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            margin-top: 30px; /* Espaçamento do elemento acima */
-            margin-bottom: 30px; /* Espaçamento do elemento abaixo */
-            text-align: left; /* Alinha o texto à esquerda dentro da caixa */
+            margin-top: 30px;
+            margin-bottom: 30px;
+            text-align: left;
         }
 
-        .memory-item {
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        }
+        .memory-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+        .memory-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .memory-date { font-weight: bold; color: #E91E63; font-size: 1.1em; margin-bottom: 5px; }
+        .memory-text { color: #333; line-height: 1.6; }
 
-        .memory-item:last-child {
-            border-bottom: none; /* Remove a borda do último item */
-            margin-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .memory-date {
-            font-weight: bold;
-            color: #E91E63; /* Cor rosa mais escura */
-            font-size: 1.1em;
-            margin-bottom: 5px;
-        }
-
-        .memory-text {
-            color: #333;
-            line-height: 1.6;
-        }
-
-        /* Estilos para o Carrossel de Imagens */
         .image-carousel {
             position: relative;
             width: 100%;
-            max-width: 400px; /* Ajuste conforme necessário */
+            max-width: 400px;
             margin: 20px auto;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Mantém o estilo geral de imagens dentro do carrossel */
         .image-carousel img {
             width: 100%;
             height: auto;
@@ -266,7 +159,6 @@
             transition: opacity 0.5s ease-in-out;
         }
 
-        /* === NOVO: estrutura de rolagem (track) sem zoom/esticar === */
         .carousel-inner{
             width: 100%;
             overflow: hidden;
@@ -281,10 +173,9 @@
             flex: 0 0 100%;
             max-width: 100%;
             height: auto;
-            object-fit: contain; /* evita corte/zoom */
+            object-fit: contain;
             display: block;
         }
-        /* === FIM NOVO === */
 
         .carousel-button {
             position: absolute;
@@ -292,23 +183,20 @@
             transform: translateY(-50%);
             background-color: rgba(255, 255, 255, 0.7);
             border: none;
-            width: 40px; /* Largura para o círculo */
-            height: 40px; /* Altura para o círculo */
-            display: flex; /* Para centralizar o conteúdo */
-            align-items: center; /* Para centralizar o conteúdo */
-            justify-content: center; /* Para centralizar o conteúdo */
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             font-size: 1.5em;
             color: #E91E63;
-            border-radius: 50%; /* Torna o botão redondo */
+            border-radius: 50%;
             transition: background-color 0.3s ease;
-            z-index: 10; /* Garante que os botões fiquem acima da imagem */
+            z-index: 10;
         }
 
-        .carousel-button:hover {
-            background-color: rgba(255, 255, 255, 0.9);
-        }
-
+        .carousel-button:hover { background-color: rgba(255, 255, 255, 0.9); }
         .carousel-button.left { left: 10px; }
         .carousel-button.right { right: 10px; }
     </style>
@@ -316,27 +204,20 @@
 <body class="min-h-screen flex flex-col items-center justify-flex-start relative overflow-hidden">
     <!-- Background elements -->
     <div class="heart" style="top: 14%; left: 5%;">
-        <!-- Usando link de download direto para maior compatibilidade -->
         <img src="https://drive.usercontent.google.com/uc?id=1dNK7rcXRkXtKEh2YZuKcyn4GtetG5z7H&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dNK7rcXRkXtKEh2YZuKcyn4GtetG5z7H&sz=w1500';" alt="Coração rosa brilhante com contorno em degrade" width="80" height="80">
     </div>
     <div class="heart" style="top: 80%; right: 8%;">
-        <!-- Este já estava correto com o link de download direto -->
         <img src="https://drive.usercontent.google.com/uc?id=1dRZKsxnFhBJ6YbIKYc5AZaZKE-YWyM6m&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dRZKsxnFhBJ6YbIKYc5AZaZKE-YWyM6m&sz=w1500';" alt="Coração rosa claro com efeito de brilho suave" width="80" height="80">
     </div>
     <div class="flower" style="top: 13%; right: 6%;">
-        <!-- Este já estava correto com o link de download direto -->
         <img src="https://drive.usercontent.google.com/uc?id=1dXlIvp6VHCmIRu3kH-Acw4sUcSfdV4iT&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dXlIvp6VHCmIRu3kH-Acw4sUcSfdV4iT&sz=w1500';" alt="Flor branca com detalhes rosados e centro amarelo" width="80" height="80">
     </div>
     <div class="flower" style="bottom: 15%; left: 12%;">
-        <!-- Este já estava correto com o link de download direto -->
         <img src="https://drive.usercontent.google.com/uc?id=1dKVTl5sSydlVpkwYqd8M41Z1OAfDs6q8&export=download" onerror="this.onerror=null;this.src='https://drive.google.com/thumbnail?id=1dKVTl5sSydlVpkwYqd8M41Z1OAfDs6q8&sz=w1500';" alt="Flor rosa com pétalas em degrade para branco" width="80" height="80">
     </div>
 
-    <!-- NOVO CONTAINER DE ROLAGEM -->
     <div class="scrollable-content">
-        <!-- Main content (AGORA TUDO DENTRO DESTE CONTAINER) -->
         <div class="text-center px-4 z-10">
-            <!-- Título alterado para cor preta -->
             <h1 class="title-font text-5xl md:text-8xl font-bold text-black mb-6 tracking-wide">
                 Mayke & Juliana
             </h1>
@@ -364,22 +245,17 @@
                 <p class="text-pink-500 mt-4">Desde 21/12/2024</p>
             </div>
 
-            <!-- Adicionado z-index ao container do Spotify -->
             <div class="spotify-embed-container mt-8 mb-10 max-w-md mx-auto z-30 relative">
-                <!-- Título adicionado acima da prévia do Spotify -->
                 <h2 class="text-xl md:text-2xl font-medium text-pink-600 mb-4">🎶 Nossa Música Especial 🎶</h2>
-                <!-- Player bonitinho do Spotify (capa) -->
                 <iframe src="https://open.spotify.com/embed/track/1bguAEOqZ6UU6Cnljrgn0t"
                         width="100%" height="152" frameBorder="0"
                         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
                 </iframe>
 
-                <!-- Áudio escondido (preview 30s Spotify) -->
                 <audio id="mySong" src="https://p.scdn.co/mp3-preview/8e5a1b17e7b9c3ddc9f6c4975d62694c1af90b77?cid=774b29d4f13844c495f206cafdad9c86"></audio>
             </div>
         </div>
 
-        <!-- Carrossel de Imagens (AGORA COM ROLAGEM/SLIDE) -->
         <div class="image-carousel mt-8 mb-10">
             <button id="prevBtn" class="carousel-button left">&#10094;</button>
             <div class="carousel-inner">
@@ -388,7 +264,6 @@
             <button id="nextBtn" class="carousel-button right">&#10095;</button>
         </div>
 
-        <!-- NOVA SEÇÃO: Textos de Memórias -->
         <div id="memory-section" class="memory-section mx-auto w-full max-w-xs sm:max-w-sm md:max-w-md">
             <h2 class="text-2xl md:text-3xl font-bold text-pink-700 mb-6 text-center">💖 Nossas Memórias Juntos 💖</h2>
             
@@ -442,17 +317,12 @@
                 <p class="memory-text">Fui na casa da minha amada, fui mais cedo um pouco. Cheguei lá e ela tomou um pouco de água, porque o dia estava quente e me ofereceu também, e em seguida fomos para o sofá. Ela e eu estávamos com sono, só que ela estava mais, e ficamos no sofá por um tempo bom. Dei vários cheiros nela, bastante porque estava com saudades, e depois de um tempo nos levantamos e fomos para a cozinha. Ela estava com fome também, e ela foi olhar a geladeira e viu abacate para fazer, e ela fez abacate para nós, eu, para ela, Mariana e a minha sogra. Começou a ficar de noite, e a mãe, pai e irmã dela foram na casa do vô dela, e nisso ficamos nós dois. Nós conversamos um pouco, nós estávamos na cozinha, e nisso comecei a cheirar, beijar, beijos que demoraram muito mais que o comum. Depois eles chegaram, nós paramos. Tempo depois vimos o horário, e vimos que já era hora de eu ter que ir. Fomos lá para fora, dei tchau para Mariana, e depois voltei para dar tchau para a mãe dela, e ela falou "já vai? Já mandou mensagem para ele?". A Juliana (minha amada) falou que nós íamos ficar um pouco lá fora ainda, nisso conversamos bastante lá fora, falamos sobre aquilo,aquilo la, e do que ela se sentia bem sobre isso.E nisso tempinho depois, abracei ela, depois perguntei se poderia pegar em suas nádegas, ela deixou, e muito depois disso, depois de ter acontecido outras coisas boas que nao seria legal citar aqui, meu pai chegou, tive que ir embora.</p>
             </div>
 
-            <!-- NOVO TEXTO ADICIONADO AQUI -->
             <div class="memory-item">
                 <p class="memory-date">22/08/2025</p>
                 <p class="memory-text">Nesse dia fui à praça com meu amor. Antes disso, entreguei o presente que preparei para ela, em comemoração aos nossos 8 meses juntos (21/08/2025). Fiz um site dedicado ao nosso amor, e junto dei chocolate e uma flor. Antes de irmos, ela ficou curiosa para ver o que tinha no QR Code. Quando abriu e começou a explorar o site, percebi sua perna inquieta, toda animada, enquanto observava cada detalhe que criei para ela. Gostou bastante, e isso me deixou feliz. Depois seguimos para a praça, onde conversamos bastante e tomamos sorvete de açaí. Mais tarde, fomos para a casa dela, onde fiquei um pouco antes de ir embora.</p>
             </div>
-            <!-- FIM DO NOVO TEXTO -->
-
         </div>
-        <!-- FIM DA NOVA SEÇÃO: Textos de Memórias -->
 
-        <!-- SEÇÃO NOVA: Player do YouTube -->
         <div class="youtube-player-container mt-8 mb-10 max-w-md mx-auto text-center">
             <h2 class="text-xl md:text-2xl font-medium text-black mb-4">Escolhi essa música pra você</h2>
             <div class="rounded-2xl overflow-hidden shadow-xl">
@@ -466,7 +336,6 @@
             </div>
         </div>
 
-        <!-- NOVA SEÇÃO: Playlist do Spotify -->
         <div class="spotify-embed-container mt-8 mb-10 max-w-md mx-auto z-30 relative">
             <h2 class="text-xl md:text-2xl font-medium text-black-600 mb-4"> Pra nunca esquecermos o quanto nos amamos!💞</h2>
             <iframe src="https://open.spotify.com/embed/playlist/6tJbNCer28QYtSOhxbv0nI?utm_source=generator" 
@@ -476,16 +345,12 @@
                     loading="lazy">
             </iframe>
         </div>
-        <!-- FIM DA NOVA SEÇÃO: Playlist do Spotify -->
-
     </div>
-    <!-- FIM DO NOVO CONTAINER DE ROLAGEM -->
 
     <script>
         function updateLoveCounter() {
             const startDate = new Date('December 21, 2024 00:00:00');
             const now = new Date();
-            
             if (now < startDate) {
                 document.getElementById('love-counter').innerHTML = `
                     <div class="col-span-4 text-center py-4">
@@ -494,25 +359,19 @@
                 `;
                 return;
             }
-            
             const diff = now - startDate;
-            
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
             document.getElementById('days').textContent = days;
             document.getElementById('hours').textContent = hours;
             document.getElementById('minutes').textContent = minutes;
             document.getElementById('seconds').textContent = seconds;
         }
-        
-        // Update counter immediately and then every second
         updateLoveCounter();
         setInterval(updateLoveCounter, 1000);
 
-        // Create floating hearts (existing background hearts)
         function createHeart() {
             const heart = document.createElement('div');
             heart.className = 'heart';
@@ -520,57 +379,40 @@
             heart.style.top = '110vh';
             heart.style.opacity = 1; 
             heart.style.transform = `scale(${Math.random() * 0.4 + 0.3})`; 
-            
             const img = document.createElement('img');
-            // Usando um link de download direto para maior compatibilidade
             img.src = `https://drive.usercontent.google.com/uc?id=1dRZKsxnFhBJ6YbIKYc5AZaZKE-YWyM6m&export=download`; 
             img.alt = "Pequeno coração rosa flutuando suavemente";
             img.width = Math.floor(Math.random() * 15 + 25); 
-            
             heart.appendChild(img);
             document.body.appendChild(heart);
-            
             const animationDuration = Math.random() * 10 + 8; 
-            
             heart.style.animation = `float ${animationDuration}s linear forwards`;
-            
-            setTimeout(() => {
-                heart.remove();
-            }, animationDuration * 1000);
+            setTimeout(() => { heart.remove(); }, animationDuration * 1000);
         }
         
-        // Corações ao clicar (NOVA FUNÇÃO)
         document.addEventListener('click', function(e) {
-            // Verifica se o clique não foi em um botão do carrossel
             if (!e.target.closest('.carousel-button')) {
                 const heart = document.createElement('div');
                 heart.className = 'click-heart';
                 heart.style.left = e.pageX + 'px';
                 heart.style.top = e.pageY + 'px';
-                heart.textContent = 'Te amo Juliana'; // Emoji de coração
+                heart.textContent = 'Te amo Juliana';
                 document.body.appendChild(heart);
-                
-                // Remove o coração após a animação
-                setTimeout(() => heart.remove(), 1500); // Duração da animação é 1.5s
+                setTimeout(() => heart.remove(), 1500);
             }
         });
     
-        // --- Fade-out gradual das imagens flutuantes ao aproximar da seção de memórias ---
         (function() {
             try {
                 var scrollable = document.querySelector('.scrollable-content');
                 var memorySection = document.getElementById('memory-section');
                 var floatEls = Array.prototype.slice.call(document.querySelectorAll('.heart, .flower'));
                 if (!scrollable || !memorySection || floatEls.length === 0) return;
-
                 function updateOpacity() {
                     var rect = memorySection.getBoundingClientRect();
                     var vh = window.innerHeight || document.documentElement.clientHeight;
-
-                    // Inicia o fade quando o topo da seção entra no último 90% da tela e termina aos 30%
                     var start = vh * 0.9;
                     var end = vh * 0.3;
-
                     var opacity = 1;
                     if (rect.top < start) {
                         var t = (rect.top - end) / (start - end);
@@ -578,39 +420,28 @@
                     }
                     floatEls.forEach(function(el) { el.style.opacity = opacity; });
                 }
-
-                // Atualiza tanto no scroll do container quanto em resize (mobile/desktop)
                 scrollable.addEventListener('scroll', updateOpacity, { passive: true });
                 window.addEventListener('resize', updateOpacity);
-                // Chamada inicial
                 updateOpacity();
             } catch(e) {
                 console.warn('Fade-out flutuantes: ', e);
             }
         })();
-        // --- fim do fade-out ---
 
-        // Lógica do Carrossel de Imagens (versão com rolagem/track)
         document.addEventListener('DOMContentLoaded', function() {
             const track = document.querySelector('.carousel-track');
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
-
-            // **URLs 7 imagens na sequência desejada**
-            // ATENÇÃO: SUBSTITUA ESTAS URLs PELAS SUAS PRÓPRIAS URLs DIRETAS DE IMAGENS HOSPEDADAS (ex: Imgur)
             const imageSources = [
-    "https://drive.google.com/thumbnail?id=1d8H4UHkNxqF8l2g1YJPzrUEFsx3lpt0N&sz=w1500",
-    "https://drive.google.com/thumbnail?id=1fRqRxKIHG4oBsfEoIHKn2zMtE6fDVlVP&sz=w1500",
-    "https://drive.google.com/thumbnail?id=1fek_1ks-tvXF9vo_QtHcuwXdNT-yid4J&sz=w1500",
-    "https://drive.google.com/thumbnail?id=1ff_AgvOKYgRvU8AD6ayn_8jTl-4fDPLP&sz=w1500",
-    "https://drive.google.com/thumbnail?id=1fS20NRG7G9y23zkKu0MzKBM6JujBWAyN&sz=w1500",
-    "https://drive.google.com/thumbnail?id=1fWwvmBr-925mwfYFTJtJanlxgH3URb6-&sz=w1500",
-    "https://drive.google.com/thumbnail?id=1fghTsZC9nRkcNNCtaZMEQPiYZ1Ky2kuq&sz=w1500"
-];
-
+                "https://drive.google.com/thumbnail?id=1d8H4UHkNxqF8l2g1YJPzrUEFsx3lpt0N&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fRqRxKIHG4oBsfEoIHKn2zMtE6fDVlVP&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fek_1ks-tvXF9vo_QtHcuwXdNT-yid4J&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1ff_AgvOKYgRvU8AD6ayn_8jTl-4fDPLP&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fS20NRG7G9y23zkKu0MzKBM6JujBWAyN&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fWwvmBr-925mwfYFTJtJanlxgH3URb6-&sz=w1500",
+                "https://drive.google.com/thumbnail?id=1fghTsZC9nRkcNNCtaZMEQPiYZ1Ky2kuq&sz=w1500"
+            ];
             let currentIndex = 0;
-
-            // monta as imagens no track
             imageSources.forEach(src => {
                 const img = document.createElement('img');
                 img.src = src;
@@ -618,25 +449,24 @@
                 img.classList.add('rounded-lg','shadow-xl');
                 track.appendChild(img);
             });
-
             function updateCarousel() {
                 const offset = -currentIndex * 100;
                 track.style.transform = `translateX(${offset}%)`;
             }
-
             prevBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex - 1 + imageSources.length) % imageSources.length;
                 updateCarousel();
             });
-
             nextBtn.addEventListener('click', () => {
                 currentIndex = (currentIndex + 1) % imageSources.length;
                 updateCarousel();
             });
-
-            // inicializa
             updateCarousel();
         });
     </script>
+
+    <!-- Clicky tracking code (correto para GitHub Pages) -->
+    <script async data-id="101491781" src="//static.getclicky.com/js"></script>
+    <noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/101491781ns.gif" /></p></noscript>
 </body>
 </html>
