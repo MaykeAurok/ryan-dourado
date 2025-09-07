@@ -111,13 +111,19 @@
             .flower:nth-of-type(4) { bottom: 2%; left: 1%; }
         }
 
+        /* Texto do clique "Te amo Juliana" */
         .click-heart {
             position: absolute;
             pointer-events: none;
-            font-size: 2em;
+            font-size: 2.25em; /* Tamanho maior */
+            font-weight: 700;
+            color: #e91e63; /* Cor rosa vibrante */
+            text-shadow: 0 0 6px #ff69b4; /* Sombra para o texto */
             animation: riseAndFade 1.5s ease-out forwards;
             z-index: 10000;
             transform: translate(-50%, -50%);
+            user-select: none;
+            font-family: 'Dancing Script', cursive; /* Mesma fonte do título */
         }
 
         @keyframes riseAndFade {
@@ -321,6 +327,12 @@
                 <p class="memory-date">22/08/2025</p>
                 <p class="memory-text">Nesse dia fui à praça com meu amor. Antes disso, entreguei o presente que preparei para ela, em comemoração aos nossos 8 meses juntos (21/08/2025). Fiz um site dedicado ao nosso amor, e junto dei chocolate e uma flor. Antes de irmos, ela ficou curiosa para ver o que tinha no QR Code. Quando abriu e começou a explorar o site, percebi sua perna inquieta, toda animada, enquanto observava cada detalhe que criei para ela. Gostou bastante, e isso me deixou feliz. Depois seguimos para a praça, onde conversamos bastante e tomamos sorvete de açaí. Mais tarde, fomos para a casa dela, onde fiquei um pouco antes de ir embora.</p>
             </div>
+
+            <div class="memory-item">
+                <p class="memory-date">06/09/2025</p>
+                <p class="memory-text">Eu e meu amor fomos pra Praça da Bíblia pra conversar. Lá a gente falou bastante, sobre ela, sobre como ela reage e como a mente dela responde a coisas que, pra mim, parecem pequenas, mas que pra ela podem ter um impacto enorme. Descobri que quando certas coisas passam batidas (coisas que ela precisa fazer), isso pode acabar deixando ela mal. Pra mim foi importante saber disso. Ela é forte e vem sendo forte, porque lidar com isso é muito cansativo. Também conversamos sobre eu querer saber do dia dela, foi legal porque ficou claro que eu não pergunto só por perguntar, e sim porque eu gosto de verdade de saber. Mesmo assim, imagino que ainda vai ser meio difícil pra ela acreditar nisso de cara, mas espero que fique algo natural quando eu perguntar. Outra coisa que me deixou feliz demais foi ela contar que guarda as pétalas das flores que já dei pra ela num diário. Inclusive da primeira, quando a gente nem namorava ainda. Ela guarda de 1 a 3 pétalas de cada, já secas. Achei muito especial. Falamos também sobre casamento. Ela perguntou se eu penso casar logo, rápido. Eu disse que não, porque sei que a realidade não é assim, tem que ser no tempo certo. E ela pensa igual. Gostei muito de ver que estamos alinhados nisso. Enquanto a gente conversava, aconteceu até um acidente pequeno na nossa frente, um carro bateu numa biz com duas mulheres. Uma delas ficou com a perna ralada. Depois disso seguimos pra casa e encontramos o Miquéias e a Ana. A reação deles quando nos viram foi muito engraçada, até voltaram pra falar com a gente. Quando chegamos na casa dela, ela me mostrou uns reels que eu gostei demais e até pedi pra ela me reenviar. Tinha também um que ela queria que eu visse só em casa, eu vi e amei. Depois ela mandou ainda mais reels (isso já quando eu tava em casa). A gente ainda ficou um tempo lá fora, até que precisei ir embora.</p>
+            </div>
+
         </div>
 
         <div class="youtube-player-container mt-8 mb-10 max-w-md mx-auto text-center">
